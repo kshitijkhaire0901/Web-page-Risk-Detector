@@ -8,6 +8,6 @@ Once the code of this tool runs , in the console / terminal , you'll get to add 
 
 And Boom ✴️ , you will get the result where it determine the risk level of website from Low to Medium to High.
 
-
+Don't worry it is just a dummy program for dummy detection of each website.
 
 
