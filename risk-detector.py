@@ -52,31 +52,33 @@ def calculate_risk(url):
     domain_age_score = check_domain_age(url)
     headers_score = check_server_headers(url)
 
+    # Log component scores
+    print(f"\n🔍 SSL Enabled: {'Yes' if ssl_score else 'No'}")
+    print(f"📅 Domain Age Risk: {domain_age_score}")
+    print(f"🧱 Security Headers Risk: {headers_score}")
+
     risk_score = 0
 
-    # SSL: 0 (safe), 3 (not safe)
     if not ssl_score:
         risk_score += 3
 
-    # Domain age: High = 3, Unknown = 2, Low = 0
     if domain_age_score == "High":
         risk_score += 3
     elif domain_age_score == "Unknown":
         risk_score += 2
 
-    # Headers: High = 4, Unknown = 2, Low = 0
     if headers_score == "High":
         risk_score += 4
     elif headers_score == "Unknown":
         risk_score += 2
 
-    # Risk categorization
     if risk_score <= 3:
         return "Low Risk"
     elif 4 <= risk_score <= 6:
         return "Medium Risk"
     else:
         return "High Risk"
+
 
 # CLI entry point
 def main():
@@ -89,7 +91,7 @@ def main():
     print("\nAnalyzing the website...\n")
 
     risk_level = calculate_risk(url)
-    print(f"\n✅ Risk level for {url}: {risk_level}")
+    print(f"\n✅ Risk level for {url}: {risk_level} \n")
 
 if __name__ == "__main__":
     main()
